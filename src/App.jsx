@@ -4,15 +4,16 @@ import { OrbitControls } from '@react-three/drei';
 import { useFrame } from "@react-three/fiber";
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import planetData from "./planets.json";
 
-const response = await fetch('/src/planets.json');
-const planetData = await response.json();
+//const response = await fetch('Solar-System/src/planets.json');
+//const planetData = await response.json();
 const planets = [];
 
 export default function App() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-    <Canvas camera={{ position: [130,90,130], fov: 75 }}>
+    <Canvas camera={{ position: [120,60,120], fov: 80 }}>
       <color attach="background" args={["grey"]} />
       <Sun />
       <AsteroidBelt />
