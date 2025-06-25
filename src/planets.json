@@ -1,0 +1,85 @@
+{
+    "planets": [
+        {
+            "id":0,
+            "name": "mercury",
+            "color": "#B7B8B9",
+            "velocity": 47.9,
+            "xOrbitalRadius": 25,
+            "zOrbitalRadius": 25,
+            "radius": 0.6
+        },
+        {
+            "id":1,
+            "name": "venus",
+            "color": "#eecb8b",
+            "velocity": 35,
+            "xOrbitalRadius": 35,
+            "zOrbitalRadius": 36,
+            "radius": 1.1
+        },
+        {
+            "id":2,
+            "name": "earth",
+            "color": "#375673",
+            "velocity": 29.8,
+            "xOrbitalRadius": 45,
+            "zOrbitalRadius": 47,
+            "radius": 1.2
+        },
+        {
+            "id":3,
+            "name": "mars",
+            "color": "#c1440e",
+            "velocity": 24,
+            "xOrbitalRadius": 55,
+            "zOrbitalRadius": 58,
+            "radius": 1
+        },
+        {
+            "id":4,
+            "name": "jupiter",
+            "color": "#d8ca9d",
+            "velocity": 13.1,
+            "xOrbitalRadius": 80,
+            "zOrbitalRadius": 90,
+            "radius": 3
+        },
+        {
+            "id":5,
+            "name": "saturn",
+            "color": "#c3924f",
+            "velocity": 9.69,
+            "xOrbitalRadius": 90,
+            "zOrbitalRadius": 100,
+            "radius": 2.8
+        },
+        {
+            "id":6,
+            "name": "uranus",
+            "color": "#ACE5EE",
+            "velocity": 6.81,
+            "xOrbitalRadius": 100,
+            "zOrbitalRadius": 112,
+            "radius": 2
+        },
+        {
+            "id":7,
+            "name": "neptune",
+            "color": "#4b70dd",
+            "velocity": 5.43,
+            "xOrbitalRadius": 110,
+            "zOrbitalRadius": 123,
+            "radius": 2
+        },
+        {
+            "id":8,
+            "name": "pluto",
+            "color": "#361d1d",
+            "velocity": 4.74,
+            "xOrbitalRadius": 120,
+            "zOrbitalRadius": 134,
+            "radius": 0.5
+        }
+    ]
+}
