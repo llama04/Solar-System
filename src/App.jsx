@@ -56,7 +56,7 @@ function Planet({ planet: { id,name,velocity,rotation, xOrbitalRadius, zOrbitalR
     <>
       <mesh ref = {planet} name={name}  position={[xOrbitalRadius, 0, 0]}>
         <sphereGeometry args={[radius,32,32]}/>
-        <meshStandardMaterial map={useTexture(window.location.pathname+"/src/2k_"+name+".jpg")} />
+        <meshStandardMaterial map={useTexture(window.location.pathname+"src/2k_"+name+".jpg")} />
       </mesh>
       <Ecliptic xRadius={xOrbitalRadius} zRadius={zOrbitalRadius} />
     </>
