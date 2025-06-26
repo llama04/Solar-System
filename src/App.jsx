@@ -3,11 +3,12 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useTexture, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import planetData from "./planets.json";
-import spaceTexture from "./8k_stars_milky_way.jpg";
-import ringTexture from "./2k_saturn_ring_alpha.png";
-import sunTexture from "./2k_sun.jpg";
+import spaceTexture from "./8k_stars_milky_way.jpg";import sunTexture from "./2k_sun.jpg";import moonTexture from "./2k_moon.jpg";import sRingTexture from "./2k_saturn_ring_alpha.png";import uRingTexture from "./uranusringcolour.jpg";
+import mercuryTexture from "./2k_mercury.jpg";import venusTexture from "./2k_venus.jpg";import earthTexture from "./2k_earth.jpg";import marsTexture from "./2k_mars.jpg";import jupiterTexture from "./2k_jupiter.jpg";import saturnTexture from "./2k_saturn.jpg";import uranusTexture from "./2k_uranus.jpg";import neptuneTexture from "./2k_neptune.jpg";import plutoTexture from "./2k_pluto.jpg";
 
 const planets = [];
+const planetTextures = [mercuryTexture,venusTexture,earthTexture,marsTexture,jupiterTexture,saturnTexture,uranusTexture,neptuneTexture,plutoTexture];
+
 console.log(window.location.pathname);
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
         <Planet planet={planet} key={planet.id} />
       ))}
       <SaturnRing />
+      <UranusRing />
       <Moon />
       <Lights />
       <OrbitControls />
@@ -38,7 +40,7 @@ function Sun() {
   return (
     <mesh ref={sun}>
       <sphereGeometry args={[15, 32, 32]} />
-      <meshStandardMaterial map={useTexture(sunTexture)} /*color="#c1440e"*/ />
+      <meshStandardMaterial map={useTexture(sunTexture)} />
     </mesh>
   );
 }
@@ -56,7 +58,7 @@ function Planet({ planet: { id,name,velocity,rotation, xOrbitalRadius, zOrbitalR
     <>
       <mesh ref = {planet} name={name}  position={[xOrbitalRadius, 0, 0]}>
         <sphereGeometry args={[radius,32,32]}/>
-        <meshStandardMaterial map={useTexture(window.location.pathname+"src/2k_"+name+".jpg")} />
+        <meshStandardMaterial map={useTexture(planetTextures[id])} />
       </mesh>
       <Ecliptic xRadius={xOrbitalRadius} zRadius={zOrbitalRadius} />
     </>
@@ -88,7 +90,7 @@ function AsteroidBelt(){
   return(
     <mesh ref = {belt} rotation = {[Math.PI/2,0,0]}>
       <torusGeometry args={[70,5,2]} />
-      <meshStandardMaterial map={useTexture(ringTexture)}/>
+      <meshStandardMaterial map={useTexture(sRingTexture)}/>
     </mesh>
   )
 }
@@ -97,11 +99,27 @@ function SaturnRing(){
   const ring = React.useRef();
   useFrame(({ clock }) => {
     ring.current.position.set(planets[5].current.position.x,0,planets[5].current.position.z);
+    ring.current.rotation.x = Math.PI/2+ Math.sin(clock.elapsedTime)/4;
+    ring.current.rotation.y = Math.cos(clock.elapsedTime)/4;
+    ring.current.rotation.z = clock.elapsedTime;
+
   })
   return (
-    <mesh ref = {ring} position={[80,0,0]} rotation={[Math.PI/2,0,0]}>
+    <mesh ref = {ring} position={[80,0,0]} rotation={[Math.PI/2,0,0]} >
       <torusGeometry args={[4, 0.75, 2.5]} />
-      <meshStandardMaterial map={useTexture(ringTexture)} />
+      <meshStandardMaterial map={useTexture(sRingTexture)} />
+    </mesh>
+  );
+}
+function UranusRing(){
+  const ring = React.useRef();
+  useFrame(({ }) => {
+    ring.current.position.set(planets[6].current.position.x,0,planets[6].current.position.z);
+  })
+  return (
+    <mesh ref = {ring} position={[80,0,0]} rotation={[Math.PI/9,0,0]}>
+      <torusGeometry args={[3, 0.3, 2.5]} />
+      <meshStandardMaterial map={useTexture(uRingTexture)} />
     </mesh>
   );
 }
@@ -119,7 +137,7 @@ function Moon(){
   return (
     <mesh ref ={moon}>
       <sphereGeometry args={[0.5, 32, 32]} />
-      <meshStandardMaterial color="#a9a9a9" />
+      <meshStandardMaterial map={useTexture(moonTexture)} />
     </mesh>
   );
 }
@@ -127,7 +145,7 @@ function Moon(){
 function Lights() {
   return (
     <>
-      <ambientLight intensity= {5}/>
+      <ambientLight intensity= {1.5}/>
       <pointLight position={[0, 0, 0]} />
     </>
   );
