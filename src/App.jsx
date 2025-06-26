@@ -1,7 +1,6 @@
 import React from 'react';
-import { Canvas,useLoader,useFrame,useThree } from '@react-three/fiber';
-import { OrbitControls,useTexture,Environment } from '@react-three/drei';
-import { TextureLoader } from 'three'
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, useTexture, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import planetData from "./planets.json";
 import spaceTexture from "./8k_stars_milky_way.jpg";
@@ -9,7 +8,7 @@ import ringTexture from "./2k_saturn_ring_alpha.png";
 import sunTexture from "./2k_sun.jpg";
 
 const planets = [];
-
+console.log(window.location.pathname);
 
 export default function App() {
   return (
@@ -57,7 +56,7 @@ function Planet({ planet: { id,name,velocity,rotation, xOrbitalRadius, zOrbitalR
     <>
       <mesh ref = {planet} name={name}  position={[xOrbitalRadius, 0, 0]}>
         <sphereGeometry args={[radius,32,32]}/>
-        <meshStandardMaterial map={useTexture("./2k_"+name+".jpg")} />
+        <meshStandardMaterial map={useTexture(window.location.pathname+"/src/2k_"+name+".jpg")} />
       </mesh>
       <Ecliptic xRadius={xOrbitalRadius} zRadius={zOrbitalRadius} />
     </>
@@ -84,7 +83,7 @@ function Ecliptic({ xRadius, zRadius }) {
 function AsteroidBelt(){
   const belt = React.useRef();
   useFrame(({ clock }) => {
-    belt.current.rotation.z = -clock.elapsedTime*50;
+    belt.current.rotation.z = clock.elapsedTime*2;
   })
   return(
     <mesh ref = {belt} rotation = {[Math.PI/2,0,0]}>
