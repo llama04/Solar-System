@@ -7,5 +7,6 @@ export default defineConfig({
   base: "/Solar-System",
   build: {
     target: "ES2022"
-  }
+  },
+  assetsInclude: ['**/*.hdr']
 })
